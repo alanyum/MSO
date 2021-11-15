@@ -61,20 +61,11 @@ df_mso_usage_week_subdept_all_hol_ym_cpi_LOC_SUBDEPT_SALES = df_mso_usage_week_s
 st.write("Highest weekly sales by location and subdepartment:")
 st.dataframe(df_mso_usage_week_subdept_all_hol_ym_cpi_LOC_SUBDEPT_SALES.style.highlight_max(axis = 0))
 
-# Add "WEEKLY_SALES+7" column for data: df_mso_usage_week_subdept_all_hol_ym_cpi_L1333.
+# Read data: df_mso_usage_week_subdept_all_hol_ym_cpi_L1333 and df_mso_usage_week_subdept_all_hol_ym_cpi_L1333_sales_margins_gb_week.
 # Reference:
-# https://stackoverflow.com/questions/3240458/how-to-increment-a-datetime-by-one-day
-## Filter out data: df_mso_usage_week_subdept_all with store's location: 1333.
-df_mso_usage_week_subdept_all_hol_ym_cpi_L1333 = df_mso_usage_week_subdept_all_hol_ym_cpi.copy()
-df_mso_usage_week_subdept_all_hol_ym_cpi_L1333 = df_mso_usage_week_subdept_all_hol_ym_cpi_L1333[df_mso_usage_week_subdept_all_hol_ym_cpi_L1333["LOC_KEY"] == 1333]
-
-## Reset index to default integer index.
-## Reference:
-## https://stackoverflow.com/questions/56151010/sort-and-slice-dataframe-in-pandas
-## https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.reset_index.html
-df_mso_usage_week_subdept_all_hol_ym_cpi_L1333 = df_mso_usage_week_subdept_all_hol_ym_cpi_L1333.reset_index(drop = True)
-
-df_mso_usage_week_subdept_all_hol_ym_cpi_L1333 = pd.read_csv("df_mso_usage_week_subdept_all_hol_ym_cpi_L1333.csv")
+# https://stackoverflow.com/questions/55240330/how-to-read-csv-file-from-github-using-pandas
+url = "https://github.com/alanyum/MSO/blob/master/df_mso_usage_week_subdept_all_hol_ym_cpi_L1333.csv?raw=true"
+df_mso_usage_week_subdept_all_hol_ym_cpi_L1333 = pd.read_csv(url, index_col = 0)
 df_mso_usage_week_subdept_all_hol_ym_cpi_L1333_sales_margins_gb_week = pd.read_csv("df_mso_usage_week_subdept_all_hol_ym_cpi_L1333_sales_margins_gb_week.csv")
 
 st.subheader("Store: 1333")
